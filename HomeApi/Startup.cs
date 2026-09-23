@@ -51,18 +51,42 @@ namespace HomeApi
             services.AddControllers();
             // поддерживает автоматическую генерацию документации WebApi с использованием Swagger
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "HomeApi", Version = "v1"}); });
+
+
+            // Явно указываем порт для перенаправления на HTTPS
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 5001;
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Проставляем специфичные для запуска при разработке свойства
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeApi v1"));
+            }*/
+
+            // Сначала обрабатываем ошибки
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
             }
 
+            // Включаем автоматический редирект с HTTP на HTTPS:
+            app.UseHttpsRedirection();
+
+            // И только уже после этого подключаем Swagger
+            if (env.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeApi v1"));
+            }
+
+            // Дальше стандартный роутинг и контроллеры
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

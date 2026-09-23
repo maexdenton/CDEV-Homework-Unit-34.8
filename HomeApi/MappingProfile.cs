@@ -4,6 +4,7 @@ using HomeApi.Contracts.Models.Devices;
 using HomeApi.Contracts.Models.Home;
 using HomeApi.Contracts.Models.Rooms;
 using HomeApi.Data.Models;
+using HomeApi.Data.Queries;
 
 namespace HomeApi
 {
@@ -27,7 +28,16 @@ namespace HomeApi
                 .ForMember(d => d.Location,
                     opt => opt.MapFrom(r => r.RoomLocation));
             CreateMap<AddRoomRequest, Room>();
-            CreateMap<Device, DeviceView>();
+
+            // Vаппинг для Device в DeviceView
+            CreateMap<Device, DeviceView>()
+                .ForMember(d => d.Location, opt => opt.MapFrom(s => s.Room.Name));
+
+            // Ммаппинг из EditRoomRequest в UpdateRoomQuery
+            CreateMap<EditRoomRequest, UpdateRoomQuery>();
+
+            // Маппинг сущности Room в RoomView
+            CreateMap<Room, RoomView>();
         }
     }
 }

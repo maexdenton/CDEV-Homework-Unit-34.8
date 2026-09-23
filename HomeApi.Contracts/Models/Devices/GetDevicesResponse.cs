@@ -11,6 +11,7 @@ namespace HomeApi.Contracts.Models.Devices
 
     public class DeviceView
     {
+        public Guid Id { get; set; }
         public DateTime AddDate { get; set; } 
         public string Name { get; set; }
         public string Manufacturer { get; set; }
