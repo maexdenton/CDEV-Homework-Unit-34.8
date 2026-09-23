@@ -1,7 +1,7 @@
 # 🏠 HomeApi — Сервиса управления "Умным домом"
 REST API сервис на базе **ASP.NET Core** для мониторинга и управления компонентами умного дома: комнатными зонами, подключенными устройствами и общими системными параметрами.
 
-Проект выполнен и доработан в рамках учебного курса SkillFactory ([за основу был взят оригинальный проект](https://github.com/SkillfactoryCoding/ASP.NET-Core-Authentication-Authorization-Practices/tree/main/Module%2040.%20Task/AuthenticationService)).
+Проект выполнен и доработан в рамках учебного курса SkillFactory ([за основу был взят оригинальный проект](https://lms-cdn.skillfactory.ru/assets/courseware/v1/450eb30ffc9c2259f5e026e3aa564769/asset-v1:SkillFactory+CDEV+2021+type@asset+block/HomeApi-final.zip)).
 
 > [!NOTE]
 > Итоговый проект по модулю 34.8 курса SkillFactory: Домашнее задание по C# - ASP.NET Core (HW-03)
